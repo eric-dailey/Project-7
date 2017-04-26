@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane fx:id="borderpane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpack.view.ChoiceBoxController">
+   <top>
+    <AnchorPane fx:id="mainpane" minHeight="0.0" minWidth="0.0" prefHeight="805.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="makeButt" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" text="make" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
+            <Button fx:id="stepButt" layoutX="26.0" layoutY="85.0" mnemonicParsing="false" prefWidth="44.0" text="step" />
+            <Button fx:id="seedButt" layoutX="28.0" layoutY="213.0" mnemonicParsing="false" text="seed" />
+            <Button fx:id="statsButt" layoutX="24.0" layoutY="275.0" mnemonicParsing="false" text="stats" />
+            <Button fx:id="quitButt" layoutX="26.0" layoutY="475.0" mnemonicParsing="false" text="quit" />
+            <Button fx:id="animateButt" layoutX="19.0" layoutY="145.0" mnemonicParsing="false" text="animate" />
+            <Separator layoutY="71.0" prefHeight="0.0" prefWidth="350.0" AnchorPane.leftAnchor="0.0" />
+            <Separator layoutY="127.0" prefHeight="0.0" prefWidth="350.0" AnchorPane.leftAnchor="0.0" />
+            <Separator layoutY="197.0" prefHeight="0.0" prefWidth="350.0" AnchorPane.leftAnchor="0.0" />
+            <Separator layoutY="257.0" prefHeight="0.0" prefWidth="350.0" AnchorPane.leftAnchor="0.0" />
+            <TextField fx:id="makeText" layoutX="246.0" layoutY="25.0" />
+            <TextArea fx:id="textarea" layoutX="428.0" layoutY="575.0" prefHeight="200.0" prefWidth="550.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+            <ChoiceBox fx:id="animateChoice" layoutX="89.0" layoutY="145.0" prefWidth="150.0" />
+            <TextField fx:id="stepText" layoutX="89.0" layoutY="85.0" />
+            <TextField fx:id="seedText" layoutX="89.0" layoutY="213.0" />
+            <TextField fx:id="makeChoice" layoutX="87.0" layoutY="25.0" />
+            <TextField fx:id="statsChoice" layoutX="89.0" layoutY="275.0" />
+            <AnchorPane layoutX="425.0" layoutY="25.0" maxHeight="-Infinity" prefHeight="525.0" prefWidth="550.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <GridPane fx:id="gridpane" gridLinesVisible="true" layoutX="-28.0" layoutY="254.0" prefHeight="550.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <Button fx:id="stopButt" layoutX="246.0" layoutY="145.0" mnemonicParsing="false" text="stop" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
