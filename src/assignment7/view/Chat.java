@@ -68,6 +68,9 @@ public class Chat {
     private PrintWriter writer;
 
     public static Socket sock;
+
+    public Client user;
+
     @FXML
     public void initialize() throws Exception {
         setUpNetworking();
@@ -75,8 +78,7 @@ public class Chat {
 
 
     private void setUpNetworking() throws Exception {
-        @SuppressWarnings("resource")
-        Client x = new Client("hello" , " Cool ", 4242);
+        user= new Client("user1 " , " Cool ", 4242);
         InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
         reader = new BufferedReader(streamReader);
         writer = new PrintWriter(sock.getOutputStream());
@@ -99,7 +101,7 @@ public class Chat {
             try {
                 while ((message = reader.readLine()) != null) {
 
-                    input.appendText(message + "\n");
+                    input.appendText(user.getId() +" " +message + "\n");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();

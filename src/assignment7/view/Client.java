@@ -20,6 +20,15 @@ public class Client {
         port  = p;
         Chat.sock = new Socket("127.0.0.1", p);
     }
+    public String getId()
+    {
+        return id;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
 
 
 }
