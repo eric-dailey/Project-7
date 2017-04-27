@@ -1,15 +1,35 @@
 package assignment7.view;
 
+import java.util.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
+import javax.swing.*;
+import java.awt.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+
+
 public class Chat {
 
-	// testing for second commit
+    // testing for second commit
     @FXML
     private AnchorPane mainpane;
 
@@ -18,6 +38,9 @@ public class Chat {
 
     @FXML
     private Tab tab1;
+
+    @FXML
+    private TextArea output;
 
     @FXML
     private AnchorPane anchor1;
@@ -29,14 +52,57 @@ public class Chat {
     private AnchorPane anchor1a;
 
     @FXML
-    private TextArea textarea;
+    private TextArea input;
 
     @FXML
     private AnchorPane anchor1b;
 
     @FXML
-	private void initialize(){
-    	
+    private Button sender;
+
+    @FXML
+    private Button hellobutton;
+
+    private BufferedReader reader;
+
+    private PrintWriter writer;
+
+    @FXML
+    public void initialize() throws Exception {
+        setUpNetworking();
     }
-    
+
+
+    private void setUpNetworking() throws Exception {
+        @SuppressWarnings("resource")
+        Socket sock = new Socket("127.0.0.1", 4242);
+        InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
+        reader = new BufferedReader(streamReader);
+        writer = new PrintWriter(sock.getOutputStream());
+        System.out.println("networking established");
+        Thread readerThread = new Thread(new IncomingReader());
+        readerThread.start();
+    }
+
+       public void sendtext() {
+            writer.println(output.getText());
+            writer.flush();
+            output.setText("");
+            output.requestFocus();
+        }
+
+
+    class IncomingReader implements Runnable {
+        public void run() {
+            String message;
+            try {
+                while ((message = reader.readLine()) != null) {
+
+                    input.appendText(message + "\n");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
