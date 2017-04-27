@@ -30,38 +30,21 @@ import javafx.fxml.FXML;
 public class Chat {
 
     // testing for second commit
-    @FXML
-    private AnchorPane mainpane;
 
-    @FXML
-    private TabPane tabpane;
-
-    @FXML
-    private Tab tab1;
 
     @FXML
     private TextArea output;
 
-    @FXML
-    private AnchorPane anchor1;
-
-    @FXML
-    private SplitPane split1;
-
-    @FXML
-    private AnchorPane anchor1a;
 
     @FXML
     private TextArea input;
 
     @FXML
-    private AnchorPane anchor1b;
+    private TextArea groupoutput;
 
     @FXML
-    private Button sender;
+    private TextArea groupinput;
 
-    @FXML
-    private Button hellobutton;
 
     private BufferedReader reader;
 
@@ -70,6 +53,12 @@ public class Chat {
     public static Socket sock;
 
     public Client user;
+
+    private BufferedReader groupreader;
+
+    private PrintWriter groupwriter;
+
+    public Socket groupsock;
 
     @FXML
     public void initialize() throws Exception {
@@ -85,6 +74,14 @@ public class Chat {
         System.out.println("networking established");
         Thread readerThread = new Thread(new IncomingReader());
         readerThread.start();
+
+        groupsock = new Socket("127.0.0.1", 5655);
+        InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
+        groupreader = new BufferedReader(groupstream);
+        groupwriter = new PrintWriter(groupsock.getOutputStream());
+        System.out.println("Group network established");
+        Thread groupThread = new Thread(new GroupIncomingReader());
+        groupThread.start();
     }
 
        public void sendtext() {
@@ -94,6 +91,13 @@ public class Chat {
             output.requestFocus();
         }
 
+        public void groupsend(){
+
+            groupwriter.println(groupoutput.getText());
+            groupwriter.flush();
+            groupoutput.setText("");
+            groupoutput.requestFocus();
+        }
 
     class IncomingReader implements Runnable {
         public void run() {
@@ -102,6 +106,20 @@ public class Chat {
                 while ((message = reader.readLine()) != null) {
 
                     input.appendText(user.getId() +" " +message + "\n");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    class GroupIncomingReader implements Runnable {
+        public void run() {
+            String messages;
+            try {
+                while ((messages = groupreader.readLine()) != null) {
+
+                    groupinput.appendText(user.getId() +" " +messages + "\n");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ChatServer {
     private ArrayList<PrintWriter> clientOutputStreams;
+    private ArrayList<PrintWriter> groupStreams;
 
     public static void main(String[] args) {
         try {
@@ -24,8 +25,11 @@ public class ChatServer {
 
     private void setUpNetworking() throws Exception {
         clientOutputStreams = new ArrayList<PrintWriter>();
+        groupStreams = new ArrayList<PrintWriter>();
         @SuppressWarnings("resource")
         ServerSocket serverSock = new ServerSocket(4242);
+        ServerSocket groupsock = new ServerSocket(5655);
+
         while (true) {
             Socket clientSocket = serverSock.accept();
             PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
@@ -34,7 +38,17 @@ public class ChatServer {
             Thread t = new Thread(new ClientHandler(clientSocket));
             t.start();
             System.out.println("got a connection");
+
+            Socket groupSocket = groupsock.accept();
+            PrintWriter groupwriter = new PrintWriter(groupSocket.getOutputStream());
+            groupStreams.add(groupwriter);
+
+            Thread x = new Thread(new ClientHandler(groupSocket));
+            x.start();
+            System.out.println("group got a a connection");
         }
+
+
 
     }
 
@@ -44,6 +58,13 @@ public class ChatServer {
         for (PrintWriter writer : clientOutputStreams) {
             writer.println(message);
             writer.flush();
+        }
+
+        for(PrintWriter groupwriter : groupStreams){
+            {
+                groupwriter.println(message);
+                groupwriter.flush();
+            }
         }
     }
 
