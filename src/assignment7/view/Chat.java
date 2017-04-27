@@ -67,6 +67,7 @@ public class Chat {
 
     private PrintWriter writer;
 
+    public static Socket sock;
     @FXML
     public void initialize() throws Exception {
         setUpNetworking();
@@ -75,7 +76,7 @@ public class Chat {
 
     private void setUpNetworking() throws Exception {
         @SuppressWarnings("resource")
-        Socket sock = new Socket("127.0.0.1", 4242);
+        Client x = new Client("hello" , " Cool ", 4242);
         InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
         reader = new BufferedReader(streamReader);
         writer = new PrintWriter(sock.getOutputStream());

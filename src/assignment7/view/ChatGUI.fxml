@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment7.view.Chat">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment7.view.Chat">
    <children>
       <TabPane layoutX="48.0" layoutY="26.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -19,7 +19,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <TextArea fx:id= "input" prefHeight="255.0" prefWidth="598.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <TextArea fx:id="input" prefHeight="255.0" prefWidth="598.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -28,12 +28,12 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <TextArea fx:id = "output" layoutX="-20.0" layoutY="-72.0" prefHeight="106.0" prefWidth="547.0" promptText="Enter Message" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <TextArea fx:id="output" layoutX="-20.0" layoutY="-72.0" prefHeight="106.0" prefWidth="547.0" promptText="Enter Message" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <Button fx:id = "sender" layoutY="41.0" mnemonicParsing="false" onAction="#sendtext" text="Send" />
+                                                <Button fx:id="sender" layoutY="41.0" mnemonicParsing="false" onAction="#sendtext" text="Send" />
                                              </children>
                                           </AnchorPane>
                                       </items>
@@ -46,7 +46,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Individual Chat 2">
+     <!--     <Tab text="Individual Chat 2">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -70,7 +70,7 @@
                                                 </AnchorPane>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                    <children>
-                                                      <Button fx:id = "hellobutton" layoutY="41.0" mnemonicParsing="false" text="Send" />
+                                                      <Button fx:id="hellobutton" layoutY="41.0" mnemonicParsing="false" text="Send" />
                                                    </children>
                                                 </AnchorPane>
                                              </items>
@@ -84,8 +84,8 @@
                      </children>
                   </AnchorPane>
             </content>
-          </Tab>
-            <Tab text="Group Chat 1">
+          </Tab> -->
+            <Tab text="Group Chat">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
