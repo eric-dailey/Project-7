@@ -34,10 +34,16 @@ public class Login {
     @FXML
     private Button test;
     
-    public void handleButt(){
+    @FXML
+    private Button priv;
+    
+    @FXML
+    private Button group;
+    
+    public void handleButt1(){
     	Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/ChatGUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("GroupOrPrivate.fxml"));
             Stage stage = new Stage();
             stage.setTitle("My New Stage Title");
             stage.setScene(new Scene(root, 450, 450));
@@ -49,5 +55,36 @@ public class Login {
             ex.printStackTrace();
         }
     }
-
+    
+    public void handleButtG(){
+    	Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("ChatWindow.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(root, 450, 450));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void handleButtP(){
+    	Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("ChatWindow.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(root, 450, 450));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
