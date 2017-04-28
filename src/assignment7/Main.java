@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
@@ -30,7 +29,7 @@ public class Main extends Application {
 	
 	private void showMainView() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/ChatGUI.fxml"));
+		loader.setLocation(Main.class.getResource("view/Welcome.fxml"));
 		mainLayout = loader.load();
 		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
