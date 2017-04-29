@@ -13,10 +13,12 @@ public class Client {
     String id;
     String password;
     int port;
+    boolean loggedin;
 
     public Client(String i , String Pass, int p) throws IOException {
         id = i;
         password = Pass;
+        loggedin = false;
         port  = p;
         Chat.sock = new Socket("127.0.0.1", p);
     }

@@ -78,12 +78,6 @@ public class Chat {
 
     }
 
-
-
-
-
-
-
     private void setUpNetworking() throws Exception {
         user= new Client(username, passes, 4242);
         InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
@@ -93,7 +87,7 @@ public class Chat {
         Thread readerThread = new Thread(new IncomingReader());
         readerThread.start();
 
-        groupsock = new Socket("192.168.0.1" , 5655);
+        groupsock = new Socket("127.0.0.1" , 5655);
         InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
         groupreader = new BufferedReader(groupstream);
         groupwriter = new PrintWriter(groupsock.getOutputStream());
