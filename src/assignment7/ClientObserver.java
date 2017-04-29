@@ -1,5 +1,5 @@
 
-package assignment7.view;
+package assignment7;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
