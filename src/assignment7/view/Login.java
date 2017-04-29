@@ -55,13 +55,10 @@ public class Login {
     @FXML
     private Button group;
     
-    @FXML
-    private ChoiceBox<String> choice = new ChoiceBox<String>();
-    
-    ObservableList<String> choiceusers = FXCollections.observableArrayList("- Select User -");
 
     private ArrayList<String> loggedin = new ArrayList<String>();
 
+    
     public void handleButt(){
     	
         String usern= usernameField.getText();
@@ -75,7 +72,6 @@ public class Login {
                 textbox.getChildren().add(new Text("Username already logged in"));
         	}
         	else if (pass.equals(passw)) {
-        		choiceusers.add(usern);
             	loggedin.add(usern);
             	textbox.getChildren().clear();
             	usernameField.clear();
@@ -151,7 +147,7 @@ public class Login {
         
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("ChatWindow.fxml"));
+            root = FXMLLoader.load(getClass().getResource("GroupChatWindow.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Group Chat");
             stage.setScene(new Scene(root, 631, 500));
@@ -167,14 +163,13 @@ public class Login {
     public void handleButtP(){
     	Stage close = (Stage) priv.getScene().getWindow();
         close.close();
-		choice.setItems(choiceusers);
-		choice.setValue("- Select User -");
+
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("PrivateSelect.fxml"));
+            root = FXMLLoader.load(getClass().getResource("ChatWindow.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Private Chat");
-            stage.setScene(new Scene(root, 320, 500));
+            stage.setScene(new Scene(root, 631, 500));
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();
