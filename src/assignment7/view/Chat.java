@@ -60,7 +60,7 @@ public class Chat {
 
     private PrintWriter groupwriter;
 
-    public Socket groupsock;
+    public static Socket groupsock;
 
     public  String username;
 
@@ -89,17 +89,17 @@ public class Chat {
         InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
         reader = new BufferedReader(streamReader);
         writer = new PrintWriter(sock.getOutputStream());
-        System.out.println("networking established");
+        System.out.println("Group network established");
         Thread readerThread = new Thread(new IncomingReader());
         readerThread.start();
 
-       /* groupsock = new Socket("127.0.0.1", 5655);
+        groupsock = new Socket("192.168.0.1" , 5655);
         InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
         groupreader = new BufferedReader(groupstream);
         groupwriter = new PrintWriter(groupsock.getOutputStream());
         System.out.println("Group network established");
         Thread groupThread = new Thread(new GroupIncomingReader());
-        groupThread.start();*/
+        groupThread.start();
     }
 
        public void sendtext() {
@@ -138,7 +138,7 @@ public class Chat {
             try {
                 while ((messages = groupreader.readLine()) != null) {
 
-                    groupinput.appendText(user.id +" " +messages + "\n");
+                    groupinput.appendText(messages + "\n");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();

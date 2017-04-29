@@ -53,20 +53,35 @@ public class ChatServer extends Observable{
         private void setUpNetworkingGroup() throws Exception {
             @SuppressWarnings("resource")
             ServerSocket serverSock = new ServerSocket(4242);
+            ServerSocket groupServerSock = new ServerSocket(5655);
             while (true) {
+
                 Socket clientSocket = serverSock.accept();
                 ClientObserver writer = new ClientObserver(clientSocket.getOutputStream());
                 Thread t = new Thread(new ClientHandler(clientSocket));
                 t.start();
                 this.addObserver(writer);
                 setChanged();
-                notifyObservers("User " + counter + " has connected to group chat.");
+                notifyObservers("User " + counter + " has connected to chat.");
                 PortToIDList.put(clientSocket.getPort(), counter);
                 System.out.println(clientSocket);
                 userList.put(counter, "User " + counter);
                 trueList.add(clientSocket);
                 System.out.println("Connection. It's ID is " + counter + ".");
                 counter++;
+
+                Socket groupclientSocket = groupServerSock.accept();
+                ClientObserver groupwriter = new ClientObserver(groupclientSocket.getOutputStream());
+                Thread x = new Thread(new ClientHandler(groupclientSocket));
+                x.start();
+                this.addObserver(groupwriter);
+                setChanged();
+                notifyObservers("User " + counter + " has connected to chat.");
+                PortToIDList.put(groupclientSocket.getPort(), counter);
+                System.out.println(groupclientSocket);
+                userList.put(counter, "User " + counter);
+                trueList.add(groupclientSocket);
+                System.out.println("Connection. It's ID is " + counter + ".");
             }
         }
 
