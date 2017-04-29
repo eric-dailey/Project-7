@@ -99,7 +99,7 @@ public class Chat {
         groupwriter = new PrintWriter(groupsock.getOutputStream());
         System.out.println("Group network established");
         Thread groupThread = new Thread(new GroupIncomingReader());
-        //groupThread.start();
+        groupThread.start();
     }
 
        public void sendtext() {
