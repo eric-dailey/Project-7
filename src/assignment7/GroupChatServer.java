@@ -9,62 +9,59 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 
-public class ChatServer extends Observable{
+public class GroupChatServer extends Observable{
 
-        public static HashMap<Integer, String> userList = new HashMap<Integer, String>();
-        public static ArrayList<String> users = new ArrayList<String>();
+        public static HashMap<Integer, String> groupuserList = new HashMap<Integer, String>();
+        public static ArrayList<String> groupusers = new ArrayList<String>();
         private static int counter = 1;
         private ArrayList<Socket> trueList = new ArrayList<Socket>();
         private HashMap<Integer, Integer> PortToIDList = new HashMap<Integer, Integer>();
 
         public static void main(String[] args) {
             try {
-                new ChatServer().setUpNetworking();
+                new GroupChatServer().setUpNetworkingGroup();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         public Integer getValue(int Integer) {
-
             System.out.println(PortToIDList.keySet());
             return PortToIDList.get(Integer);
 
         }
 
-        private void setUpNetworking() throws Exception {
+        private void setUpNetworkingGroup() throws Exception {
             @SuppressWarnings("resource")
-            ServerSocket serverSock = new ServerSocket(4242);
-            while (true) {
 
-                Socket clientSocket = serverSock.accept();
-                ClientObserver writer = new ClientObserver(clientSocket.getOutputStream());
-                Thread t = new Thread(new ClientHandler(clientSocket));
-                t.start();
-                this.addObserver(writer);
+            ServerSocket groupServerSock = new ServerSocket(5655);
+            while (true) {
+                Socket groupclientSocket = groupServerSock.accept();
+                ClientObserver groupwriter = new ClientObserver(groupclientSocket.getOutputStream());
+                Thread x = new Thread(new GroupClientHandler(groupclientSocket));
+                x.start();
+                this.addObserver(groupwriter);
                 setChanged();
                 notifyObservers("User " + counter + " has connected to chat.");
-                PortToIDList.put(clientSocket.getPort(), counter);
-                System.out.println(clientSocket);
-                userList.put(counter, "User " + counter);
-                trueList.add(clientSocket);
+                PortToIDList.put(groupclientSocket.getPort(), counter);
+                System.out.println(groupclientSocket);
+                groupuserList.put(counter, "User " + counter);
+                trueList.add(groupclientSocket);
                 System.out.println("Connection. It's ID is " + counter + ".");
-                counter++;
-
             }
         }
 
-        class ClientHandler implements Runnable {
+        class GroupClientHandler implements Runnable {
             private BufferedReader reader;
             private Socket holdme;
 
-            public ClientHandler(Socket clientSocket) {
+            public GroupClientHandler(Socket clientSocket) {
                 Socket sock = clientSocket;
                 holdme = clientSocket;
                 try {
@@ -93,7 +90,7 @@ public class ChatServer extends Observable{
                             notifyObservers(message + clientID);
                         } else {
                             setChanged();
-                            String name = userList.get(PortToIDList.get(holdme.getPort()));
+                            String name = groupuserList.get(PortToIDList.get(holdme.getPort()));
                             String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")).toString();
                             notifyObservers(time + " " + name + ": " + message);
                         }

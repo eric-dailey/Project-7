@@ -87,13 +87,7 @@ public class Chat {
         Thread readerThread = new Thread(new IncomingReader());
         readerThread.start();
 
-        groupsock = new Socket("127.0.0.1" , 5655);
-        InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
-        groupreader = new BufferedReader(groupstream);
-        groupwriter = new PrintWriter(groupsock.getOutputStream());
-        System.out.println("Group network established");
-        Thread groupThread = new Thread(new GroupIncomingReader());
-        groupThread.start();
+
     }
 
        public void sendtext() {
@@ -103,13 +97,7 @@ public class Chat {
             output.requestFocus();
         }
 
-        public void groupsend(){
 
-            groupwriter.println(groupoutput.getText());
-            groupwriter.flush();
-            groupoutput.setText("");
-            groupoutput.requestFocus();
-        }
 
     class IncomingReader implements Runnable {
 
@@ -126,19 +114,7 @@ public class Chat {
         }
     }
 
-    class GroupIncomingReader implements Runnable {
-        public void run() {
-            String messages;
-            try {
-                while ((messages = groupreader.readLine()) != null) {
 
-                    groupinput.appendText(messages + "\n");
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 
 
 

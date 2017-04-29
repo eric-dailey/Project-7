@@ -20,7 +20,7 @@ public class Client {
         password = Pass;
         loggedin = false;
         port  = p;
-        Chat.sock = new Socket("127.0.0.1", p);
+        Chat.sock = new Socket("10.146.210.237", p);
     }
     public String getId()
     {
