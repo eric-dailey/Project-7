@@ -1,6 +1,8 @@
 package assignment7.view;
 
 import java.util.*;
+
+import assignment7.ChatServer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -60,14 +62,30 @@ public class Chat {
 
     public Socket groupsock;
 
+    public  String username;
+
+    public  String passes;
+
+    static int count = 0;
+
+    private int ID;
+
+
     @FXML
     public void initialize() throws Exception {
+        ChatServer.users.add(ChatServer.userList.get(Integer.valueOf(ID)));
         setUpNetworking();
+
     }
 
 
+
+
+
+
+
     private void setUpNetworking() throws Exception {
-        user= new Client("user1 " , " Cool ", 4242);
+        user= new Client(username, passes, 4242);
         InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
         reader = new BufferedReader(streamReader);
         writer = new PrintWriter(sock.getOutputStream());
@@ -75,13 +93,13 @@ public class Chat {
         Thread readerThread = new Thread(new IncomingReader());
         readerThread.start();
 
-        groupsock = new Socket("127.0.0.1", 5655);
+       /* groupsock = new Socket("127.0.0.1", 5655);
         InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
         groupreader = new BufferedReader(groupstream);
         groupwriter = new PrintWriter(groupsock.getOutputStream());
         System.out.println("Group network established");
         Thread groupThread = new Thread(new GroupIncomingReader());
-        groupThread.start();
+        groupThread.start();*/
     }
 
        public void sendtext() {
@@ -100,12 +118,13 @@ public class Chat {
         }
 
     class IncomingReader implements Runnable {
-        public void run() {
+
+            public void run() {
             String message;
             try {
                 while ((message = reader.readLine()) != null) {
 
-                    input.appendText(user.getId() +" " +message + "\n");
+                    input.appendText(message + "\n");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -119,11 +138,15 @@ public class Chat {
             try {
                 while ((messages = groupreader.readLine()) != null) {
 
-                    groupinput.appendText(user.getId() +" " +messages + "\n");
+                    groupinput.appendText(user.id +" " +messages + "\n");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+
+
+
 }
+

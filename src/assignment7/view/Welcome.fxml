@@ -22,7 +22,7 @@
                         <Font name="Century" size="28.0" />
                      </font>
                   </Text>
-                  <Text layoutX="255.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please log in below" />
+                  <Text fx:id="textbox" layoutX="255.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please log in below" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
