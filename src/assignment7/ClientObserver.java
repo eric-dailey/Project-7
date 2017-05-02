@@ -1,3 +1,10 @@
+/*
+ *	Project 7 ChatRoom
+ *	Eric Dailey <emd925>
+ *	Shariq Memon <skm2662>
+ *	4/29/2017
+ *	Slip day used: Yes
+ */
 
 package assignment7;
 
