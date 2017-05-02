@@ -62,6 +62,7 @@ public class GroupChatServer extends Observable{
                 groupuserList.put(counter, "User " + counter);
                 trueList.add(groupclientSocket);
                 System.out.println("Connection. It's ID is " + counter + ".");
+                counter++;
             }
         }
 

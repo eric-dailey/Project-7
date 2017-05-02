@@ -77,7 +77,7 @@ public class GroupChat {
 
     private void GroupsetUpNetworking() throws Exception {
 
-        groupsock = new Socket("10.146.210.237" , 5655);
+        groupsock = new Socket("10.146.35.234" , 5655);
         InputStreamReader groupstream = new InputStreamReader(groupsock.getInputStream());
         groupreader = new BufferedReader(groupstream);
         groupwriter = new PrintWriter(groupsock.getOutputStream());

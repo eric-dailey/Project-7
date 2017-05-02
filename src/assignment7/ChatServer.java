@@ -49,7 +49,8 @@ public class ChatServer extends Observable{
         private void setUpNetworking() throws Exception {
             @SuppressWarnings("resource")
             ServerSocket serverSock = new ServerSocket(4242);
-            while (true) {
+
+            while (counter < 3) {
 
                 Socket clientSocket = serverSock.accept();
                 ClientObserver writer = new ClientObserver(clientSocket.getOutputStream());
